@@ -47,11 +47,9 @@ while True:
     if results['gate_trigger']=='1':
         # device_module = getattr(__import__('.',fromlist=[DEVICE['type']]),DEVICE['type'])
         device_module = __import__("_"+DEVICE['type'])
-        print('module_loaded',device_module.__name__)
         dev = device_module.Controller()
         dev.buka_gate()
-        sleep(2)
-        dev.tutup_gate()
+        
         
         
 
