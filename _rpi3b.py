@@ -6,11 +6,12 @@ from settings import DEVICE
 
 class Controller(object):
     def __init__(self):
-        GPIO.setup(GPIO.BOARD)
-        GPIO.setup(24,GPIO.OUT)
+        GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(DEVICE['gpio_gate_pin'],GPIO.OUT)
     
     def buka_gate(self):
-        GPIO.output(24,GPIO.HIGH)
+        GPIO.output(DEVICE['gpio_gate_pin'],GPIO.HIGH)
 
     def tutup_gate(self):
-        GPIO.output(24,GPIO.LOW)    
+        GPIO.output(DEVICE['gpio_gate_pin'],GPIO.LOW)    
