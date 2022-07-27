@@ -1,0 +1,1 @@
+__name__ = 'Orange Pi Zero 2'

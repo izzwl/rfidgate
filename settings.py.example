@@ -1,2 +1,14 @@
-API_URL = 'http://api-rfidgate.localhost:8000/'
+API_URL = 'https://api-rfidgate.umcntp.co.id/'
 
+DEVICE = {
+    'role': 'gate-out', # gate-in / gate-out / absensi-in / absensi-out
+    'type': 'rpi3b', # rpi3b / opizero2
+    'gpio_gate_pin':'10',
+    'gpio_led_pin':'11',
+}
+
+
+/*reference
+https://opi-gpio.readthedocs.io/en/latest/install.html
+
+*/
