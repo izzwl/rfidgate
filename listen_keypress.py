@@ -31,7 +31,7 @@ while True:
                 timeout=3
             )
             res_json = r.json() 
-            results.update({ k:v for k,v in res_json.item()})
+            results.update({ k:v for k,v in res_json.items()})
             
         except:
             results['error'] = 'requests error'
@@ -41,9 +41,13 @@ while True:
 
     if results['gate_trigger']=='1':
         # device_module = getattr(__import__('.',fromlist=[DEVICE['type']]),DEVICE['type'])
-        device_module = __import__("_"+DEVICE['type'])
-        dev = device_module.Controller()
-        dev.buka_gate()
+        try:
+            device_module = __import__("_"+DEVICE['type'])
+            dev = device_module.Controller()
+            dev.buka_gate()
+        except Exception as e:
+            print(e)
+
         
         
         
