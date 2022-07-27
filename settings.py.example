@@ -8,7 +8,8 @@ DEVICE = {
 }
 
 
-/*reference
+"""
+reference
 https://opi-gpio.readthedocs.io/en/latest/install.html
 
-*/
+"""
