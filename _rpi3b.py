@@ -20,6 +20,6 @@ class Controller(object):
 
     def listen_tutup_gate(self):
         while True: # Run forever
-            if GPIO.input(DEVICE['gpio_tutup_gate_pin']) == GPIO.HIGH:
+            if GPIO.input(int(DEVICE['gpio_tutup_gate_pin'])) == GPIO.HIGH:
                 print("Tutup Gate!")
                 GPIO.output(int(DEVICE['gpio_gate_pin']),GPIO.LOW)    
