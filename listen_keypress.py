@@ -3,6 +3,14 @@ from unittest import result
 import keyboard
 import requests
 from settings import API_URL,DEVICE
+
+try:
+    device_module = __import__("_"+DEVICE['type'])
+    dev = device_module.Controller()
+except Exception as e:
+    print(e)
+    dev = None
+
 while True:
     #listen keypress
     texts = list(keyboard.get_typed_strings(keyboard.record(until='enter')))
@@ -42,8 +50,6 @@ while True:
     if results['gate_trigger']=='1':
         # device_module = getattr(__import__('.',fromlist=[DEVICE['type']]),DEVICE['type'])
         try:
-            device_module = __import__("_"+DEVICE['type'])
-            dev = device_module.Controller()
             dev.buka_gate()
         except Exception as e:
             print(e)
