@@ -33,3 +33,5 @@ class Controller(object):
             if GPIO.input(int(DEVICE['gpio_tutup_gate_pin'])) == GPIO.HIGH:
                 print("Tutup Gate!")
                 self.tutup_gate()    
+                sleep(1)
+

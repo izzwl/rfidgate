@@ -2,8 +2,6 @@ from time import sleep
 from unittest import result
 import keyboard
 import requests
-import json
-import os
 from settings import API_URL,DEVICE
 while True:
     #listen keypress
@@ -33,10 +31,7 @@ while True:
                 timeout=3
             )
             res_json = r.json() 
-            results = {
-                **results,
-                **res_json
-            }
+            results.update({ k:v for k,v in res_json.item()})
             
         except:
             results['error'] = 'requests error'
