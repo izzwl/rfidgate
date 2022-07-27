@@ -26,7 +26,7 @@ class Controller(object):
     def buka_gate(self):
         GPIO.output(int(DEVICE['gpio_gate_pin']),GPIO.HIGH)
         self.blip_led()   
-        sleep(1)
+        sleep(int(DEVICE['gpio_gate_pin_sleep'])-1)
         self.tutup_gate()
 
     def tutup_gate(self):

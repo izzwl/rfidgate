@@ -7,6 +7,8 @@ DEVICE = {
     'gpio_gate_pin':'18',
     'gpio_led_pin':'19',
     'gpio_tutup_gate_pin':'16',
+    'gpio_gate_pin_sleep':3,
+
 }
 
 """
