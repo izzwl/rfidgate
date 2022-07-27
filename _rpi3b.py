@@ -13,7 +13,11 @@ class Controller(object):
         GPIO.setup(int(DEVICE['gpio_led_pin']),GPIO.OUT)
         # Set pin sensor/push button tutup_gate to be an input pin and set initial value to be pulled low (off)
         GPIO.setup(int(DEVICE['gpio_tutup_gate_pin']), GPIO.IN, pull_up_down=GPIO.PUD_DOWN) 
-        
+    
+    def __del__(self):
+        print("Cleanup GPIO")
+        GPIO.cleanup()
+
     def blip_led(self):
         GPIO.output(int(DEVICE['gpio_led_pin']),GPIO.HIGH)
         sleep(1)
