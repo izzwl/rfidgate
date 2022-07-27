@@ -10,7 +10,7 @@ class Controller(object):
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(int(DEVICE['gpio_gate_pin']),GPIO.OUT)
         # Set pin sensor/push button tutup_gate to be an input pin and set initial value to be pulled low (off)
-        GPIO.setup(int(DEVICE['gpio_tutup_gate_pin'], GPIO.IN, pull_up_down=GPIO.PUD_DOWN)) 
+        # GPIO.setup(int(DEVICE['gpio_tutup_gate_pin'], GPIO.IN, pull_up_down=GPIO.PUD_DOWN)) 
     
     def buka_gate(self):
         GPIO.output(int(DEVICE['gpio_gate_pin']),GPIO.HIGH)
@@ -18,8 +18,8 @@ class Controller(object):
     def tutup_gate(self):
         GPIO.output(int(DEVICE['gpio_gate_pin']),GPIO.LOW)    
 
-    def listen_tutup_gate(self):
-        while True: # Run forever
-            if GPIO.input(int(DEVICE['gpio_tutup_gate_pin'])) == GPIO.HIGH:
-                print("Tutup Gate!")
-                GPIO.output(int(DEVICE['gpio_gate_pin']),GPIO.LOW)    
+    # def listen_tutup_gate(self):
+    #     while True: # Run forever
+    #         if GPIO.input(int(DEVICE['gpio_tutup_gate_pin'])) == GPIO.HIGH:
+    #             print("Tutup Gate!")
+    #             GPIO.output(int(DEVICE['gpio_gate_pin']),GPIO.LOW)    

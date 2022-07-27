@@ -49,5 +49,6 @@ while True:
         dev = device_module.Controller()
         dev.buka_gate()
         
+        
 
 
