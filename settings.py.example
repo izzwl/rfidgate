@@ -1,12 +1,13 @@
 API_URL = 'https://api-rfidgate.umcntp.co.id/'
+# API_URL = 'http://api-rfidgate.localhost:8000/'
 
 DEVICE = {
     'role': 'gate-out', # gate-in / gate-out / absensi-in / absensi-out
     'type': 'rpi3b', # rpi3b / opizero2
-    'gpio_gate_pin':'10',
+    'gpio_gate_pin':'18',
     'gpio_led_pin':'11',
+    'gpio_tutup_gate_pin':'14',
 }
-
 
 """
 reference
