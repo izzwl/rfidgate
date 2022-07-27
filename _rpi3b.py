@@ -5,7 +5,7 @@ from settings import DEVICE
 
 
 class Controller(object):
-    def __init__(self):
+    def __init__(self,*args, **kwargs):
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(DEVICE['gpio_gate_pin'],GPIO.OUT)
