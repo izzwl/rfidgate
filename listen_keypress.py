@@ -1,7 +1,9 @@
+from time import sleep
 from unittest import result
 import keyboard
 import requests
 import json
+import os
 from settings import API_URL,DEVICE
 while True:
     #listen keypress
@@ -48,6 +50,8 @@ while True:
         print('module_loaded',device_module.__name__)
         dev = device_module.Controller()
         dev.buka_gate()
+        sleep(2)
+        dev.tutup_gate()
         
         
 
