@@ -8,10 +8,10 @@ class Controller(object):
     def __init__(self,*args, **kwargs):
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(DEVICE['gpio_gate_pin'],GPIO.OUT)
+        GPIO.setup(int(DEVICE['gpio_gate_pin']),GPIO.OUT)
     
     def buka_gate(self):
-        GPIO.output(DEVICE['gpio_gate_pin'],GPIO.HIGH)
+        GPIO.output(int(DEVICE['gpio_gate_pin']),GPIO.HIGH)
 
     def tutup_gate(self):
-        GPIO.output(DEVICE['gpio_gate_pin'],GPIO.LOW)    
+        GPIO.output(int(DEVICE['gpio_gate_pin']),GPIO.LOW)    
