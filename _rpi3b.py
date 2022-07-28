@@ -20,13 +20,13 @@ class Controller(object):
 
     def blip_led(self):
         GPIO.output(int(DEVICE['gpio_led_pin']),GPIO.HIGH)
-        sleep(1)
+        sleep(0.3)
         GPIO.output(int(DEVICE['gpio_led_pin']),GPIO.LOW)    
     
     def buka_gate(self):
         GPIO.output(int(DEVICE['gpio_gate_pin']),GPIO.HIGH)
         self.blip_led()   
-        sleep(int(DEVICE['gpio_gate_pin_sleep'])-1)
+        sleep(int(DEVICE['gpio_gate_pin_sleep'])-0.3)
         self.tutup_gate()
 
     def tutup_gate(self):

@@ -1,58 +1,60 @@
+import threading
 from time import sleep
-from unittest import result
 import keyboard
 import requests
 from settings import API_URL,DEVICE
 
-try:
-    device_module = __import__("_"+DEVICE['type'])
-    dev = device_module.Controller()
-except Exception as e:
-    print(e)
-    dev = None
-
-while True:
-    #listen keypress
-    texts = list(keyboard.get_typed_strings(keyboard.record(until='enter')))
-    data = ''
-    res_json = None
-
-    results = {
-        'rfid':'',
-        'gate_trigger':0,
-    }
-
+def listening():
     try:
-        if texts[0] != '':
-            results['rfid'] = texts[0]
-            data = texts[0]
-    except:
-        results['error'] = 'keypress listen error'
+        device_module = __import__("_"+DEVICE['type'])
+        dev = device_module.Controller()
+    except Exception as e:
+        print(e)
+        dev = None
 
-    #eksekusi request ke api untuk cek rfid dan record data
-    if data:
+    while True:
+        #listen keypress
+        texts = list(keyboard.get_typed_strings(keyboard.record(until='enter')))
+        data = ''
+        res_json = None
+
+        results = {
+            'rfid':'',
+            'gate_trigger':0,
+        }
+
         try:
-            endpoint = API_URL+'cek_user/%s/%s'%(data,DEVICE['role'])
-            print(endpoint)
-            r = requests.get(
-                endpoint,
-                timeout=3
-            )
-            res_json = r.json() 
-            results.update({ k:v for k,v in res_json.items()})
-            
+            if texts[0] != '':
+                results['rfid'] = texts[0]
+                data = texts[0]
         except:
-            results['error'] = 'requests error'
+            results['error'] = 'keypress listen error'
 
-    
-    print(results['gate_trigger'],results)
+        #eksekusi request ke api untuk cek rfid dan record data
+        if data:
+            try:
+                endpoint = API_URL+'cek_user/%s/%s'%(data,DEVICE['role'])
+                print(endpoint)
+                r = requests.get(
+                    endpoint,
+                    timeout=3
+                )
+                res_json = r.json() 
+                results.update({ k:v for k,v in res_json.items()})
+                
+            except:
+                results['error'] = 'requests error'
 
-    if results['gate_trigger']=='1':
-        # device_module = getattr(__import__('.',fromlist=[DEVICE['type']]),DEVICE['type'])
-        try:
-            dev.buka_gate()
-        except Exception as e:
-            print(e)
+        
+        print(results['gate_trigger'],results)
+
+        if results['gate_trigger']=='1':
+            # device_module = getattr(__import__('.',fromlist=[DEVICE['type']]),DEVICE['type'])
+            try:
+                # dev.buka_gate()
+                threading.Thread(target=dev.buka_gate).start()
+            except Exception as e:
+                print(e)
 
         
         
