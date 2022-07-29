@@ -6,6 +6,7 @@ from settings import DEVICE
 
 
 class Controller(object):
+    second_blip = 0.3
     def __init__(self,*args, **kwargs):
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BOARD)
@@ -18,15 +19,15 @@ class Controller(object):
         print("Cleanup GPIO")
         GPIO.cleanup()
 
-    def blip_led(self):
+    def blip_led(self,second=None):
         GPIO.output(int(DEVICE['gpio_led_pin']),GPIO.HIGH)
-        sleep(0.3)
+        sleep(int(second) if second else self.second_blip)
         GPIO.output(int(DEVICE['gpio_led_pin']),GPIO.LOW)    
     
     def buka_gate(self):
         GPIO.output(int(DEVICE['gpio_gate_pin']),GPIO.HIGH)
         self.blip_led()   
-        sleep(int(DEVICE['gpio_gate_pin_sleep'])-0.3)
+        sleep(int(DEVICE['gpio_gate_pin_sleep'])-self.second_blip)
         self.tutup_gate()
 
     def tutup_gate(self):
