@@ -5,8 +5,6 @@ import listen_keypress
 import listen_tutup_gate
 
 if __name__ == '__main__':
-    starting = threading.Thread(target=listen_keypress.starting).start()
-    starting.join()
     t_keypress = threading.Thread(target=listen_keypress.listening)
     # t_keypress.daemon = True
     t_keypress.start()

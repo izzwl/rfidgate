@@ -4,18 +4,6 @@ import keyboard
 import requests
 from settings import API_URL,DEVICE
 
-def starting():
-    try:
-        device_module = __import__("_"+DEVICE['type'])
-        dev = device_module.Controller()
-    except Exception as e:
-        print(e)
-        dev = None
-    try:
-        threading.Thread(target=dev.blip_led,args=(4,)).start()
-    except Exception as e:
-        print(e)
-
 def listening():
     try:
         device_module = __import__("_"+DEVICE['type'])
