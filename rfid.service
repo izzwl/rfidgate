@@ -1,0 +1,11 @@
+[Unit]
+Description=RFIDService
+Requires=network.target
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/python3 /root/rfidgate/main.py
+
+[Install]
+WantedBy=multi-user.target

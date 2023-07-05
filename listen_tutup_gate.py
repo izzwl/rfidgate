@@ -9,6 +9,6 @@ def listening():
         dev = None
     try:
         # dev.buka_gate()
-        dev.listen_tutup_gate()
+        dev._listen_tutup_gate()
     except Exception as e:
         print(e)
