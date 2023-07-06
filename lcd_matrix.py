@@ -68,6 +68,16 @@ class LCD(object):
     self.bus.write_byte(self.I2C_ADDR,(bits & ~self.ENABLE))
     time.sleep(self.E_DELAY)
 
+  def lcd_datetime(self,tiktok,line):
+    self.lcd_byte(line, self.LCD_CMD)
+    message = time.strftime('%Y-%m-%d  %H:%M ')
+    for i in range(len(message)):
+      self.lcd_byte(ord(message[i]),self.LCD_CHR)
+    for i in range(2):
+      if tiktok == True:
+        self.lcd_byte(220,self.LCD_CHR)
+
+
   def lcd_string(self,message,line):
     # Send string to display
 
@@ -108,7 +118,8 @@ class LCD(object):
     tiktok = False
     while True:
       tiktok = not tiktok
-      cursor = " ||" if tiktok else " |"
+      # self.lcd_datetime(tiktok,self.LCD_LINE_1)
+      cursor = " "+chr(255)+chr(255) if tiktok else "  "
       if line1:
         ln = line1 
       else:

@@ -22,7 +22,7 @@ error_lines = {
 not_connected_lines = {
     'line1':"+------------------+",
     'line2':"|  DISCONNECT FROM |",
-    'line3':"|     SERVER       |",
+    'line3':"|     SERVER :(    |",
     'line4':"+------------------+",
 }
 
