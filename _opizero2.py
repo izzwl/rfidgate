@@ -31,6 +31,8 @@ class Controller(object):
                     **self.device,
                     **res_json['device']
                 }
+                # for k,v in res_json['device']:
+                self.device.update(**res_json['device'])
             except:
                 self.not_connected = True
             # print(self.device)

@@ -88,7 +88,7 @@ def listening():
         #eksekusi request ke api untuk cek rfid dan record data
         if data:
             try:
-                endpoint = API_URL+'cek_user/%s/%s'%(data,DEVICE['role'])
+                endpoint = API_URL+'cek_user/%s/%s'%(data,dev.device['role'])
                 # print(endpoint)
                 # log.info(endpoint)
                 r = requests.get(
