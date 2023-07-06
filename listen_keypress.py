@@ -129,7 +129,7 @@ def listening():
                 if t_lcd : t_lcd.kill()
                 if t_led : t_led.kill()
                 success_lines = {
-                    'line1':results['datetime'],
+                    'line1':results['datetime'][0:17],
                     'line2':results['nik'],
                     'line3':results['name'][0:20],
                     # 'line4':'BERHASIL'.rjust(20),

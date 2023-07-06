@@ -105,8 +105,15 @@ class LCD(object):
     # Initialise display
 
     self.lcd_init()
+    tiktok = False
     while True:
-      self.lcd_string(f"{line1}" if line1 else time.strftime('%Y-%m-%d  %H:%M:%S'),self.LCD_LINE_1)
+      tiktok = not tiktok
+      cursor = " ||" if tiktok else " |"
+      if line1:
+        ln = line1 
+      else:
+        ln = time.strftime('%Y-%m-%d  %H:%M') + cursor
+      self.lcd_string(f"{ln}",self.LCD_LINE_1)
       # self.lcd_string(f"{line2}" if line2 else "                    ",self.LCD_LINE_2)
       # self.lcd_string(f"{line3}" if line3 else "                    ",self.LCD_LINE_3)
       # self.lcd_string(f"{line4}" if line4 else "<<<<< Gate IN <<<<< ",self.LCD_LINE_4)
@@ -115,6 +122,7 @@ class LCD(object):
       self.lcd_string(f"{line3}" if line3 else STATIC_TEXT[3],self.LCD_LINE_3)
       self.lcd_string(f"{line4}" if line4 else STATIC_TEXT[4],self.LCD_LINE_4)
       time.sleep(1)
+      
       # else:
       #   break
 
